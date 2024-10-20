@@ -28,7 +28,7 @@ export const useProductStore = create<ProductStore>((set) => ({
       name: "Air Force",
       category: "Shoes",
       brand: "Nike",
-      image: "https://static.virtubox.io/project/file/20240928-191636-lqgh-5111951.jpg",
+      image: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/2fe4f8a0-a435-4fdf-8b69-d63aa63f1f7b/custom-nike-air-force-1-mid.png",
       variants: [
         {
           name: "Size",
