@@ -1,9 +1,6 @@
 
-import React, { ComponentPropsWithRef } from 'react'
+import { ComponentPropsWithRef } from 'react'
 
-interface FormCardProps {
-  formtitle: string;
-}
 const FormCard = (props:ComponentPropsWithRef<'div'>) => {
   const { children } = props;
   return (
