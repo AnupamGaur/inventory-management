@@ -40,6 +40,7 @@ export const ProductSchema = z.object({
 }).refine(
   (data) => {
     const skus = new Set();
+    console.log(skus)
     for (const combination of Object.values(data.combinations)) {
       if (skus.has(combination.sku)) {
         return false;

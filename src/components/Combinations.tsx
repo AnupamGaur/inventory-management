@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useEffect } from 'react';
 import { Controller,  useFormContext, useWatch } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
@@ -30,7 +30,7 @@ const Combinations: React.FC<CombinationsProps> = () => {
   const { control, setValue, getValues, formState: { errors }, trigger } = useFormContext<FormValues>();
   const watchedVariants = useWatch({ control, name: 'variants' });
   const watchedCombinations = useWatch({ control, name: 'combinations' });
-  const [duplicateSKU, setDuplicateSKU] = useState<Boolean>(false);
+
 
 
   const generateCombinations = (variants: Array<{ name: string; values: string[] }>) => {
@@ -94,15 +94,7 @@ const Combinations: React.FC<CombinationsProps> = () => {
                 <div className='relative'>
                   <Input {...field} placeholder="SKU"  onChange={(e) => {
                     field.onChange(e);
-                    trigger(`combinations.${key}.sku`);
-                    if (e.target.value.trim()) {
-                      const newSku = e.target.value;
-                      const isDuplicate = Object.values(watchedCombinations).some(comb => comb.sku === newSku);
-                      setDuplicateSKU(isDuplicate);
-
-                    } else {
-                      setDuplicateSKU(false);
-                    }
+                    trigger(['combinations']);
                   }} />
                   {errors.combinations?.[key]?.sku && (
                     <p className="text-red-500 text-sm absolute left-2 top-8">{errors.combinations[key].sku.message}</p>
@@ -143,8 +135,8 @@ const Combinations: React.FC<CombinationsProps> = () => {
           </div>
         );
       })}
-      {duplicateSKU && (
-        <p className="text-red-500 text-sm ml-36">Duplicate SKU</p>
+      {errors.combinations?.message && (
+        <p className="text-red-500 text-sm ml-36">{errors.combinations?.message as String}</p>
       )}
     </div>
   );
