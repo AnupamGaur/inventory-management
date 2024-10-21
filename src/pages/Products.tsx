@@ -49,9 +49,9 @@ const Products = () => {
                 </div>
                 <DialogFooter>
                   <Button className='bg-[#E1E7EB] w-28 font-bold text-[#1F8CD0] hover:brightness-95' onClick={() => setOpen(false)}>Cancel</Button>
-                  <Button className='bg-[#1F8CD0] w-28 font-bold hover:brightness-95'  onClick={async () => {
+                  <Button className='bg-[#1F8CD0] w-28 font-bold hover:brightness-95'  onClick={() => {
                     // adding category here
-                    await addCategory(newCategory)
+                    addCategory(newCategory)
                     setOpen(false)
                   }
                   }>Save</Button>

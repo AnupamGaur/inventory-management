@@ -22,8 +22,8 @@ const Addproduct = () => {
     mode: 'onChange',
     defaultValues: {
       name: "",
-      category: "Shoes",
-      brand: "Ait",
+      category: "",
+      brand: "",
       image: "",
       variants: [
       ],
