@@ -12,7 +12,7 @@ export const VariantSchema = z.object({
 
 export const CombinationSchema = z.object({
   name: z.string(),
-  sku: z.string().min(1,"Empty SKU"),
+  sku: z.string().trim().min(1,"Empty SKU"),
   quantity: z.number().nullable(),
   inStock: z.boolean()
 });
@@ -40,8 +40,11 @@ export const ProductSchema = z.object({
 }).refine(
   (data) => {
     const skus = new Set();
-
     for (const combination of Object.values(data.combinations)) {
+      const empty:Boolean = combination.sku.trim() === "";
+      if(empty){
+        return true;
+      }
       if (skus.has(combination.sku)) {
         return false;
       }
