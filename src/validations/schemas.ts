@@ -37,7 +37,23 @@ export const ProductSchema = z.object({
   ),
   priceInr: z.number(),
   discount: DiscountSchema
-})
+}).refine(
+  (data) => {
+    const skus = new Set();
+    console.log(skus)
+    for (const combination of Object.values(data.combinations)) {
+      if (skus.has(combination.sku)) {
+        return false;
+      }
+      skus.add(combination.sku);
+    }
+    return true;
+  },
+  {
+    message: "All SKUs must be unique",
+    path: ["combinations"]
+  }
+);
 
 export const CategoryStoreSchema = z.object({
   categories: z.array(categorySchema),
