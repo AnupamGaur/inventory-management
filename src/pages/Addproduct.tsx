@@ -5,16 +5,16 @@ import Variants from '@/components/Variants'
 import Combinations from '@/components/Combinations'
 import Description from '@/components/Description'
 import PriceInfo from '@/components/PriceInfo'
-import { useForm, FormProvider} from "react-hook-form"
+import { useForm, FormProvider } from "react-hook-form"
 import { Product, useProductStore } from '@/store/products'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductSchema } from '@/validations/schemas'
 import { Link, useNavigate } from 'react-router-dom'
-
+import { ChevronLeftCircle } from 'lucide-react'
 
 const Addproduct = () => {
   const navigate = useNavigate()
-  const {  addProduct } = useProductStore()
+  const { addProduct } = useProductStore()
   const [step, setStep] = useState<number>(1)
 
   const methods = useForm<Product>({
@@ -39,7 +39,7 @@ const Addproduct = () => {
 
   const onSubmit = (data: Product) => {
     addProduct(data)
-    alert(JSON.stringify(data))
+    console.log(JSON.stringify(data))
     navigate('/products')
   }
   const fieldsToValidate = (currstep: number) => {
@@ -75,7 +75,7 @@ const Addproduct = () => {
     }
   }
   const handleStepClick = async (clickedStep: number) => {
-    for(let i=1; i<clickedStep; i++) {
+    for (let i = 1; i < clickedStep; i++) {
       const result = await methods.trigger(fieldsToValidate(i));
       if (!result) {
         return;
@@ -96,7 +96,18 @@ const Addproduct = () => {
               <button className="px-6 bg-[#1F8CD0] text-white rounded font-bold h-10 hover:brightness-95 w-40" type="button" onClick={handleButtonClick}>{buttonText}</button>
             </div>
           </div>
-          <ProgressIndicator step={step} onStepClick={handleStepClick}></ProgressIndicator>
+          <div className='flex space-x-4 items-center'>
+            <div>
+              {step === 1 ? <Link to='/products'>
+                <ChevronLeftCircle>
+
+                </ChevronLeftCircle>
+              </Link> : <ChevronLeftCircle onClick={() => setStep(step-1)} className='cursor-pointer'>
+
+              </ChevronLeftCircle>}
+            </div>
+            <ProgressIndicator step={step} onStepClick={handleStepClick}></ProgressIndicator>
+          </div>
           <div>
             <FormCard>
               {(step == 1) &&
