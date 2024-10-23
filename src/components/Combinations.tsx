@@ -78,7 +78,12 @@ const Combinations: React.FC<CombinationsProps> = () => {
     <div className="space-y-4">
       <div className="grid grid-cols-4 gap-2 font-normal ">
         <div></div>
-        <div >SKU *</div>
+        <div className='relative'>SKU *
+        {errors.combinations?.message && (
+        <p className="text-red-500 text-sm absolute -mt-1">{errors.combinations?.message as String}</p>
+      )}
+        </div>
+
         <div className='flex justify-center'>In stock</div>
         <div>Quantity</div>
       </div>
@@ -135,9 +140,7 @@ const Combinations: React.FC<CombinationsProps> = () => {
           </div>
         );
       })}
-      {errors.combinations?.message && (
-        <p className="text-red-500 text-sm ml-36">{errors.combinations?.message as String}</p>
-      )}
+
     </div>
   );
 };

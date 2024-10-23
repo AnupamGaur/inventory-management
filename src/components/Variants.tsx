@@ -98,7 +98,7 @@ const Variants = () => {
             </div>
         </div>
       ))}
-
+      <div className='flex items-center justify-between'>
       <Button
         type="button"
         variant="outline"
@@ -107,6 +107,14 @@ const Variants = () => {
       >
         + Add Option
       </Button>
+      <div>
+        {errors.variants?.message && (
+          <p className="text-red-500 text-sm mt-1">
+            {errors.variants.message}
+          </p>
+        )}
+        </div>
+        </div>
     </div>
   );
 };

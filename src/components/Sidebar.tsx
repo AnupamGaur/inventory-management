@@ -38,7 +38,7 @@ const Sidebar = () => {
           <img src="https://static.virtubox.io/project/file/20241017-175544-boms-user1.png" alt="User" className="w-10 h-10 rounded-full" />
           <div>
             <div className="font-semibold">Anupam Gaur</div>
-            <div className="text-sm text-gray-500">agaur_be20@thapr.edu</div>
+            <div className="text-sm text-gray-500">agaur_be20@thapar.edu</div>
           </div>
           <svg className="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none">
             <path d="M9.293 6.293L15.586 12l-6.293 6.293 1.414 1.414L18.414 12 10.707 4.293 9.293 6.293z" fill="#1F8CD0"></path>
